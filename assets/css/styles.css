@@ -4,3 +4,80 @@ height: 0em;
 vertical-align: -.125em;
 fill: currentcolor;
 }
+
+.nav-link {
+  font-weight: 500;
+  color: navy;
+}
+
+.nav-item a:hover{
+  font-weight: 500;
+  color: red;
+  animation: bounce;
+}
+
+a {
+  color: inherit;
+}
+
+.bi-github::before { content: "\f3ed"; }
+
+.section-padding {
+  padding: 60px 0;
+}
+
+.aws-badge {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Used video header from https://codepen.io/DylanMacnab/pen/NjVXEe*/
+
+.video-container {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    @media(min-width: 600px) {
+      height: 50vh;
+    }
+  }
+  
+  video {
+    object-fit: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+ /* 
+  * {
+    box-sizing: border-box;
+  }*/
+  
+  .video-container:after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(black, .2);
+    z-index: 1;
+  }
+  
+  .callout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+

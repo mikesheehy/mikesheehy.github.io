@@ -1,275 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home | Mike Sheehy - Software Engineer</title>
-    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">-->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/styles.css" rel="stylesheet">
-    <link href="assets/css/product.css" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Sheehy | Software Engineer</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicons/site.webmanifest">
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .web-header {
-        padding-top: 6px;
-        padding-bottom: 6px;
-        height: 52px;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .nav{
-        display: block;
-      }
+    
     </style>
-  </head>
-  <body>                
-    <header class="web-header">
-      <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Mike Sheehy</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#projects">Projects</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <button class="btn btn-link nav-link  dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
-                    <svg class="bi my-1 theme-icon-active"><use href="#sun-fill"></use></svg>
-                    Theme
-                    <!--<span class="d-lg-none ms-2">Toggle theme</span>-->
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme" style="--bs-dropdown-min-width: 8rem;">
-                    <li>
-                      <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light">
-                        <svg class="bi me-2 opacity-50 theme-icon"><use href="#sun-fill"></use></svg>
-                        Light
-                        <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
-                        <svg class="bi me-2 opacity-50 theme-icon"><use href="#moon-stars-fill"></use></svg>
-                        Dark
-                        <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto">
-                        <svg class="bi me-2 opacity-50 theme-icon"><use href="#circle-half"></use></svg>
-                        Auto
-                        <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
-                      </button>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>          
-    </header>
+</head>
+<body>
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-link nav-link  dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
+              <svg class="bi my-1 theme-icon-active"><use href="#sun-fill"></use></svg>
+              Theme
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme" style="--bs-dropdown-min-width: 8rem;">
+              <li>
+                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light">
+                  <svg class="bi me-2 opacity-50 theme-icon"><use href="#sun-fill"></use></svg>
+                  <i class="di bi-moon-stars-fill"></i>
+                  Light
+                  <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
 
-    <main>
-      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
-          <h1 class="display-4 fw-normal">Building things for fun</h1>
-          <p class="lead fw-normal">Software engineer learing new tech outside of 9-5. View my projects and contact me if you're interested in collaborating.</p>
-          <a class="btn btn-outline-secondary" href="#">Visit GitHub</a>
-        </div>
-        <div class="product-device shadow-sm d-none d-md-block"></div>
-        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-      </div>
-    <a id="about"></a>
-      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 py-3">
-            <h2 class="display-5">Software engineer by day</h2>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
+                  <svg class="bi me-2 opacity-50 theme-icon"><use href="#moon-stars-fill"></use></svg>
+                  Dark
+                  <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto">
+                  <svg class="bi me-2 opacity-50 theme-icon"><use href="#circle-half"></use></svg>
+                  Auto
+                  <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </header>
+      <main>
+        <section class="video-container">
+          <video src="assets/videos/clouds.mp4" autoplay loop playsinline muted></video>
+          <div class="callout">
+            <h1 class="display-1 animate__animated animate__fadeInUp" style="font-weight: 600;">Mike Sheehy</h1>
+            <h2 class="animate__animated animate__fadeIn animate__delay-1s">Software Engineer / Cloud Enthusiast</h2>
+            <!--<i style="font-size: 4rem;" fill="currentColor" class="bi bi-github"></i>
+            <i style="font-size: 4rem;" fill="currentColor" class="bi bi-linkedin"></i><br>-->
+            <div class="fs-1 mb-3">
+              <a href="/"><i class="bi bi-github animate__animated animate__fadeIn animate__delay-1s" width="3rem" height="2rem" fill="currentColor"></i></a>
+              <a href="/"><i class="bi bi-linkedin animate__animated animate__fadeIn animate__delay-1s" width="3rem" height="2rem" fill="currentColor"></i></a>
+            </div>
+            <svg class="bi bi-github" width="32" height="32" fill="currentColor">
+              <use xlink:href="bootstrap-icons.svg#github"/>
+            </svg>
           </div>
-          <div class="mx-auto" style="width: 80%; height: 200px;">
-            <p class="lead">I graduated from a coding bootcamp in 2016 and continue to incorporate new tech skills to find workday solutions. I'm a full stack Java developer interested in cloud computing and DevOps practices.</p>
-          </div>
-          <div class="mx-auto" style="width: 80%; height: 100px;">
-            <a class="btn btn-outline-secondary" href="#">Connect on LinkedIn</a>
-          </div>
-        </div>
-        <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 p-3">
-            <h2 class="display-5">Tech enthusist by night</h2>
-          </div>
-          <div class="mx-auto" style="width: 80%; height: 200px;">
-            <p class="lead">After work, I continue learning. I'm currently working on my first AWS cetificate and modernizing my tech stack with Angular. I also volunteer for Code Kentucky and Code Louisville as a mentor helping adults move into the tech industry.</p>  
-          </div>
-          <div class="mx-auto" style="width: 80%; height: 100px;">
-          <a class="btn btn-outline-secondary" href="#">Follow on Twitter</a>
-        </div>
-        </div>
-      </div>
-    <a id="projects"></a>
-      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 p-3">
-            <h2 class="display-5">Under construction</h2>
-            <p class="lead">Adding new projects to my site soon.</p>
-          </div>
-          <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-        <div class="text-bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 py-3">
-            <h2 class="display-5">Another headline</h2>
-            <p class="lead">And an even wittier subheading.</p>
-          </div>
-          <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-      </div>
-    
-      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 p-3">
-            <h2 class="display-5">Another headline</h2>
-            <p class="lead">And an even wittier subheading.</p>
-          </div>
-          <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 py-3">
-            <h2 class="display-5">Another headline</h2>
-            <p class="lead">And an even wittier subheading.</p>
-          </div>
-          <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-      </div>
-    
-      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 p-3">
-            <h2 class="display-5">Another headline</h2>
-            <p class="lead">And an even wittier subheading.</p>
-          </div>
-          <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div class="my-3 py-3">
-            <h2 class="display-5">Another headline</h2>
-            <p class="lead">And an even wittier subheading.</p>
-          </div>
-          <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-        </div>
-      </div>
-    </main>
-    
-    <footer class="container py-5">
-      <div class="row">
-        <div class="col-12 col-md">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-          <small class="d-block mb-3 text-muted">&copy; 2023</small>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Projects</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="link-secondary" href="#">Cool stuff</a></li>
-            <li><a class="link-secondary" href="#">Random feature</a></li>
-            <li><a class="link-secondary" href="#">Team feature</a></li>
-            <li><a class="link-secondary" href="#">Stuff for developers</a></li>
-            <li><a class="link-secondary" href="#">Another one</a></li>
-            <li><a class="link-secondary" href="#">Last time</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="link-secondary" href="#">Resource name</a></li>
-            <li><a class="link-secondary" href="#">Resource</a></li>
-            <li><a class="link-secondary" href="#">Another resource</a></li>
-            <li><a class="link-secondary" href="#">Final resource</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="link-secondary" href="#">Business</a></li>
-            <li><a class="link-secondary" href="#">Education</a></li>
-            <li><a class="link-secondary" href="#">Government</a></li>
-            <li><a class="link-secondary" href="#">Gaming</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md">
-          <h5>Socials</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="link-secondary" href="#">Twitter</a></li>
-            <li><a class="link-secondary" href="#">LinkedIn</a></li>
-            <li><a class="link-secondary" href="#">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+        </section>
 
-    
-    
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>-->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/switch.js"></script>
-  </body>
+        <section id="about" class="section-padding">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+                <div class="img-thumb wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
+                  <h3 class="animate__animated animate__fadeInLeft animate__delay-1s">About</h3>
+                  <p class="animate__animated animate__fadeInLeft animate__delay-1s">
+                    I'm Marika, a dedicated full-stack developer specializing in backend development with a keen interest in
+                    AWS. I
+                    first became interested in tech when I took part in an ERP integration project and
+                    cross-functional end-to-end testing during my previous career in order management. A career break offered
+                    an opportunity to explore this field, complete a full stack developer diploma course and build some
+                    projects.<br>
+                    <br>As part of my professional growth, I have obtained the AWS Certified Developer Associate
+                    certification and
+                    I'm currently learning towards the AWS Certified Solutions Architect Associate certification.<br>
+      
+                    <br>Please see below some of the things I have built and my resume.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="img-thumb wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
+                  <img class="aws-badge animate__animated animate__fadeIn animate__delay-1s" src="assets/images/aws-badge.png" alt="AWS Certified Cloud Practitioner Badge">
+                </div>
+              </div>
+      
+            </div>
+          </div>
+          
+          
+        </section>
+
+          <div class="container px-4 py-5" id="featured-3">
+            <h2 class="pb-2 border-bottom">Columns with icons</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+              <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                  <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <a href="#" class="icon-link">
+                  Call to action
+                  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                </a>
+              </div>
+              <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                  <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"></use></svg>
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <a href="#" class="icon-link">
+                  Call to action
+                  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                </a>
+              </div>
+              <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                  <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                <a href="#" class="icon-link">
+                  Call to action
+                  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+      </main>
+      <footer></footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/js/switch.js"></script>
+</body>
 </html>
