@@ -5,7 +5,7 @@ vertical-align: -.125em;
 fill: currentcolor;
 }
 
-.nav-link {
+/*.nav-link {
   font-weight: 500;
   color: navy;
 }
@@ -14,6 +14,10 @@ fill: currentcolor;
   font-weight: 500;
   color: red;
   animation: bounce;
+}*/
+
+.callout {
+  color: #212529;
 }
 
 a {
