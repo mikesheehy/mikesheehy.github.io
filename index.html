@@ -13,7 +13,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
     <link rel="manifest" href="assets/favicons/site.webmanifest">
     <style>
-    
+      div.project1 {
+        background-image:url("https://www.treehugger.com/thmb/z9XWueIDAUQI6QvXfCR6JyuFzl8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2018__08__CollectionOfCloudsAgainstABlueSky-8cae9f3109d14dcf98d9facc5775222f.jpg");
+      }
     </style>
 </head>
 <body>
@@ -22,8 +24,8 @@
           <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
           <li class="nav-item"><a href="#about" class="nav-link">About Me</a></li>
           <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
           <li class="nav-item dropdown">
             <button class="btn btn-link nav-link  dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
               <svg class="bi my-1 theme-icon-active"><use href="#sun-fill"></use></svg>
@@ -105,13 +107,13 @@
                   <img class="aws-badge animate__animated animate__fadeIn animate__delay-1s" src="assets/images/aws-badge.png" alt="AWS Certified Cloud Practitioner Badge">
                 </div>
               </div>
-      
             </div>
           </div>          
         </section>
-        <!--<section id="projects" class="section-padding">
+
+        <section id="blog">
           <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom">Projects</h2>
+            <h2 class="animate__animated animate__fadeInLeft animate__delay-1s">Blog</h2>
             <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
               <div class="feature col">
                 <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
@@ -148,7 +150,8 @@
               </div>
             </div>
           </div>
-        </section>-->
+        </section>
+
         <section id="projects" class="section-padding">
           <div class="container">
             <h2 class="animate__animated animate__fadeInLeft animate__delay-1s">Projects</h2>
@@ -161,10 +164,10 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                <h2>Add borders</h2>
-                <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-                <button class="btn btn-outline-secondary" type="button">Example button</button>
+              <div class="h-100 p-5 text-bg-dark rounded-3 project1">
+                <h2>Change the background</h2>
+                <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+                <button class="btn btn-outline-light" type="button">Example button</button>
               </div>
             </div>
           </div>
@@ -177,14 +180,19 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                <h2>Add borders</h2>
-                <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-                <button class="btn btn-outline-secondary" type="button">Example button</button>
+              <div class="h-100 p-5 text-bg-dark rounded-3">
+                <h2>Change the background</h2>
+                <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+                <button class="btn btn-outline-light" type="button">Example button</button>
               </div>
             </div>
           </div>
         </div>
+        </section>
+        <section id="contact">
+          <div class="container">
+            <h2 class="animate__animated animate__fadeInLeft animate__delay-1s">Contact</h2>
+          </div>
         </section>
       </main>
       <footer></footer>
