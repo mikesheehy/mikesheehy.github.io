@@ -13,11 +13,18 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
     <link rel="manifest" href="assets/favicons/site.webmanifest">
     <style>
+      .projectcard{
+        padding-bottom: 10px;
+      }
       .project1 {
         background-image:url("https://www.treehugger.com/thmb/z9XWueIDAUQI6QvXfCR6JyuFzl8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2018__08__CollectionOfCloudsAgainstABlueSky-8cae9f3109d14dcf98d9facc5775222f.jpg");
       }
       .featurette-heading {
         letter-spacing: -.05rem;
+      }
+      .mapsize {
+        width: 100%;
+        height: auto;
       }
     @media (min-width: 62em){
       .featurette-heading {
@@ -25,8 +32,16 @@
       }
     }
     @media (min-width: 40em){
+      .projectcard{
+        padding-bottom: none;
+      }
       .featurette-heading {
         font-size: 50px;
+      }
+      .mapsize{
+        width: 500px;
+        height: 400px;
+        border: 0;
       }
     }
 
@@ -173,7 +188,7 @@
           <div class="container">
             <h2 class="pb-3 animate__animated animate__fadeInLeft animate__delay-1s">Projects</h2>
           <div class="row align-items-md-stretch mb-3">
-            <div class="col-md-6">
+            <div class="col-md-6 projectcard">
               <div class="h-100 p-5 text-bg-dark rounded-3">
                 <h2>Change the background</h2>
                 <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
@@ -189,7 +204,7 @@
             </div>
           </div>
           <div class="row align-items-md-stretch">
-            <div class="col-md-6">
+            <div class="col-md-6 projectcard">
               <div class="h-100 p-5 text-bg-dark rounded-3">
                 <h2>Change the background</h2>
                 <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
@@ -216,7 +231,7 @@
                 <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
               </div>
               <div class="col-md-5 order-md-1">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200698.12875182842!2d-85.6767705!3d38.188804999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88690b1ab35bd511%3A0xd4d3b4282071fd32!2sLouisville%2C%20KY!5e0!3m2!1sen!2sus!4v1698622518941!5m2!1sen!2sus" width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200698.12875182842!2d-85.6767705!3d38.188804999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88690b1ab35bd511%3A0xd4d3b4282071fd32!2sLouisville%2C%20KY!5e0!3m2!1sen!2sus!4v1698622518941!5m2!1sen!2sus" class="mapsize" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           </div>          
