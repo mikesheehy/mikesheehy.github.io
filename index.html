@@ -1,261 +1,502 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Mike Sheehy is a software developer in Louisville Kentucky open to collaborative projects">
+    <meta name="author" content="Mike Sheehy">
     <title>Mike Sheehy | Software Engineer</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicons/site.webmanifest">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
+
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="assets/css/neon.css">
+
+<link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
+
+
     <style>
-      .projectcard{
-        padding-bottom: 10px;
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
       }
-      .project1 {
-        background-image:url("https://www.treehugger.com/thmb/z9XWueIDAUQI6QvXfCR6JyuFzl8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2018__08__CollectionOfCloudsAgainstABlueSky-8cae9f3109d14dcf98d9facc5775222f.jpg");
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
       }
-      .featurette-heading {
-        letter-spacing: -.05rem;
-      }
-      .mapsize {
+
+      .b-example-divider {
         width: 100%;
-        height: auto;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
       }
-    @media (min-width: 62em){
-      .featurette-heading {
-        margin-top: 7rem;
-      }
-    }
-    @media (min-width: 40em){
-      .projectcard{
-        padding-bottom: none;
-      }
-      .featurette-heading {
-        font-size: 50px;
-      }
-      .mapsize{
-        width: 500px;
-        height: 400px;
-        border: 0;
-      }
-    }
 
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
     </style>
-    <script src="https://kit.fontawesome.com/d7cefcb793.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud" viewBox="0 0 16 16">
-      <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
-    </svg>
-    <header class="d-flex justify-content-center py-3">
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">About Me</a></li>
-          <!--<li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>-->
-          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-          <!--<li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>-->
-          <li class="nav-item dropdown">
-            <button class="btn btn-link nav-link  dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
-              <svg class="bi my-1 theme-icon-active"><use href="#sun-fill"></use></svg>
-              Theme
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme" style="--bs-dropdown-min-width: 8rem;">
-              <li>
-                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light">
-                  <svg class="bi me-2 opacity-50 theme-icon"><use href="#sun-fill"></use></svg>
-                  <i class="di bi-sun-fill" style="margin-right: 10px;"></i>
-                  Light
-                  <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
 
-                </button>
-              </li>
-              <li>
-                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
-                  <svg class="bi me-2 opacity-50 theme-icon"><use href="#moon-stars-fill"></use></svg>
-                  <i class="di bi-moon-stars-fill" style="margin-right: 10px;"></i>
-                  Dark
-                  <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
-                </button>
-              </li>
-              <li>
-                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto">
-                  <svg class="bi me-2 opacity-50 theme-icon"><use href="#circle-half"></use></svg>
-                  <i class="di bi-circle-half" style="margin-right: 10px;"></i>
-                  Auto
-                  <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
-                </button>
-              </li>
-            </ul>
+    
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+              id="bd-theme"
+              type="button"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+              aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="arrow-right-circle" viewBox="0 0 16 16">
+    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+  </symbol>
+  <symbol id="bootstrap" viewBox="0 0 118 94">
+    <title>Bootstrap</title>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
+  </symbol>
+</svg>
+
+<div class="col-lg-9 mx-auto p-4 py-md-5">
+  
+
+  <main>
+    <div class="row g-5">
+      <div class="col-md-6">
+        <div class style="position:fixed">
+        <h2 class="text-body-emphasis neonText">Mike Sheehy</h2>
+        <p>Software Engineer</p>
+        <ul class="list-unstyled ps-0">
+          <li>
+            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/icons-font" rel="noopener" target="_blank">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap npm starter
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/parcel" rel="noopener" target="_blank">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel starter
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/vite" rel="noopener" target="_blank">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite starter
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/webpack" rel="noopener" target="_blank">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack starter
+            </a>
           </li>
         </ul>
-      </header>
-      <main>
-        <section id="home" class="video-container">
-          <video src="assets/videos/clouds.mp4" autoplay loop playsinline muted></video>
-          <div class="callout">
-            <h1 class="display-1 animate__animated animate__fadeInUp" style="font-weight: 600;">Mike Sheehy</h1>
-            <h2 class="animate__animated animate__fadeIn animate__delay-1s">Software Engineer / Cloud Enthusiast</h2>
-            <!--<i style="font-size: 4rem;" fill="currentColor" class="bi bi-github"></i>
-            <i style="font-size: 4rem;" fill="currentColor" class="bi bi-linkedin"></i><br>-->
-            <div class="fs-1 mb-3">
-              <a href="https://github.com/mikesheehy" target="_blank"><i class="bi bi-github animate__animated animate__fadeIn animate__delay-1s" width="3rem" height="2rem" fill="currentColor"></i></a>
-              <a href="https://www.linkedin.com/in/mbsheehy/" target="_blank"><i class="bi bi-linkedin animate__animated animate__fadeIn animate__delay-1s" width="3rem" height="2rem" fill="currentColor"></i></a>
-              <a href="https://mikesheehy.hashnode.dev/" target="_blank"><i class="fa-brands fa-hashnode animate__animated animate__fadeIn animate__delay-1s" width="3rem" height="2rem" fill="currentColor"></i></a>
-            </div>
-          </div>
-        </section>
+      </div>
+    </div>
 
-        <section id="about" class="section-padding">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-                <div class="img-thumb wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                  <h2 class="pb-3 animate__animated animate__fadeInLeft animate__delay-1s">About Me</h2>
-                  <p class="animate__animated animate__fadeInLeft animate__delay-1s">
-                    I'm Mike, a dedicated full-stack developer specializing in Java with a keen interest in
-                    AWS and platform engineering. I
-                    first became interested in tech when I helped implement SEO strategies for my first job after college. A career change offered
-                    an opportunity to explore this field, complete a full stack developer bootcamp, and build some
-                    projects.<br>
-                    <br>As part of my professional growth, I have obtained the AWS Certified Cloud Practitioner
-                    certification and
-                    I'm currently learning towards the AWS Certified Developer Associate certification.<br>
-                    <br>When I'm not working or pursuing new technical skills, I spend my time running, listening to new music, cooking, cheering on 
-                    my college and local sports teams, and traveling. In fact, some of this site was built while riding a 
-                    high-speed train from Barcelona to Madrid! I also volunteer as a mentor for <a href="https://code-you.org/" target="_blank">Code:You</a>.<br>
-                    <br>Please see below some of the things I have built and my resume.
-                  </p>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <div class="img-thumb wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible;-webkit-animation-delay: 0.3s; -moz-animation-delay: 0.3s; animation-delay: 0.3s;">
-                  <img class="aws-badge animate__animated animate__fadeIn animate__delay-1s" src="assets/images/aws-badge.png" alt="AWS Certified Cloud Practitioner Badge">
-                </div>
-              </div>
-            </div>
-          </div>          
-        </section>
-<!--
-        <section id="blog">
-          <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-3 animate__animated animate__fadeInLeft animate__delay-1s">Blog</h2>
-            <div class="row g-4 row-cols-1 row-cols-lg-3">
-              <div class="feature col">
-                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                  <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
-                </div>
-                <h3 class="fs-2 text-body-emphasis">Blog Post</h3>
-                <p>This is a sample blog post description. Once I connect a blog post to my site, this is where you will see the subject and call to action.</p>
-                <a href="#" class="icon-link">
-                  Read More
-                  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
-                </a>
-              </div>
-              <div class="feature col">
-                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                  <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"></use></svg>
-                </div>
-                <h3 class="fs-2 text-body-emphasis">Blog Post</h3>
-                <p>This is a sample blog post description. Once I connect a blog post to my site, this is where you will see the subject and call to action.</p>
-                <a href="#" class="icon-link">
-                  Read More
-                  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
-                </a>
-              </div>
-              <div class="feature col">
-                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                  <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
-                </div>
-                <h3 class="fs-2 text-body-emphasis">Blog Post</h3>
-                <p>This is a sample blog post description. Once I connect a blog post to my site, this is where you will see the subject and call to action.</p>
-                <a href="#" class="icon-link">
-                  Read More
-                  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div class="col-md-6" >
+      <p>I'm Mike, a dedicated full-stack developer specializing in Java with a keen interest in AWS and platform engineering. I first became interested in tech when I helped implement SEO strategies for my first job after college. A career change offered an opportunity to explore this field, complete a full stack developer bootcamp, and build some projects.</p>
+      <p>As part of my professional growth, I have obtained the AWS Certified Cloud Practitioner certification and I'm currently learning towards the AWS Certified Developer Associate certification.</p>
+      <p>When I'm not working or pursuing new technical skills, I spend my time running, listening to new music, cooking, cheering on my college and local sports teams, and traveling. In fact, some of this site was built while riding a high-speed train from Barcelona to Madrid! I also volunteer as a mentor for Code:You.</p>
+      <p>Please see below some of the things I have built and my resume.</p>
+        <h2 class="text-body-emphasis">Guides</h2>
+        <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+        <ul class="list-unstyled ps-0">
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/introduction/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap quick start guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/webpack/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Webpack guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/parcel/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Parcel guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/vite/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Bootstrap Vite guide
+            </a>
+          </li>
+          <li>
+            <a class="icon-link mb-1" href="/docs/5.3/getting-started/contribute/">
+              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
+              Contributing to Bootstrap
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer class="pt-5 my-5 text-body-secondary border-top">
+    Created by the Bootstrap team &middot; &copy; 2024
+  </footer>
+</div>
+<script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-        <section id="projects" class="section-padding">
-          <div class="container">
-            <h2 class="pb-3 animate__animated animate__fadeInLeft animate__delay-1s">Projects</h2>
-          <div class="row align-items-md-stretch mb-3">
-            <div class="col-md-6 projectcard">
-              <div class="h-100 p-5 text-bg-dark rounded-3">
-                <h2>Sample Project</h2>
-                <p>This is where I'll add my GitHub repositories. I'm still adding/editing my site, so come back later to se my list of my projects.</p>
-                <button class="btn btn-outline-light" type="button">View Repo</button>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="h-100 p-5 text-bg-dark rounded-3 project1">
-                <h2>Sample Project</h2>
-                <p>This is where I'll add my GitHub repositories. I'm still adding/editing my site, so come back later to se my list of my projects.</p>
-                <button class="btn btn-outline-light" type="button">View Repo</button>
-              </div>
-            </div>
-          </div>
-          <div class="row align-items-md-stretch">
-            <div class="col-md-6 projectcard">
-              <div class="h-100 p-5 text-bg-dark rounded-3">
-                <h2>Sample Project</h2>
-                <p>This is where I'll add my GitHub repositories. I'm still adding/editing my site, so come back later to se my list of my projects.</p>
-                <button class="btn btn-outline-light" type="button">View Repo</button>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="h-100 p-5 text-bg-dark rounded-3">
-                <h2>Sample Project</h2>
-                <p>This is where I'll add my GitHub repositories. I'm still adding/editing my site, so come back later to se my list of my projects.</p>
-                <button class="btn btn-outline-light" type="button">View Repo</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        </section>
-      -->
-        <section id="contact" class="section-padding">
-          <div class="container">
-            <h2 class="pb-3 animate__animated animate__fadeInLeft animate__delay-1s">Contact</h2>
-            <div class="row featurette">
-              <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading lh-1">Meet me in Louisville <span class="text-body-secondary">(or message me instead)</span>.</h2>
-                <p class="lead">I'm always available to help or collaborate. If you're in the Louisville area, let's meet up for coffee. Message me on LinkedIn and let's start the conversation!</p>
-              </div>
-              <div class="col-md-5 order-md-1">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200698.12875182842!2d-85.6767705!3d38.188804999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88690b1ab35bd511%3A0xd4d3b4282071fd32!2sLouisville%2C%20KY!5e0!3m2!1sen!2sus!4v1698622518941!5m2!1sen!2sus" class="mapsize" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-            </div>
-          </div>          
-        </section>
-      </main>
-      <div id="articles"></div>
-        <div class="container">
-          <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <p class="col-md-4 mb-0 text-body-secondary">
-              <a href="https://github.com/mikesheehy" target="_blank"><i class="bi bi-github" alt="Go back to top"></i></a>
-              <a href="https://www.linkedin.com/in/mbsheehy/`" target="_blank"><i class="bi bi-linkedin" alt="Go back to top"></i></a>
-            </p>
-            <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-              <a href="#home"><i class="bi bi-cloud-arrow-up-fill" alt="Go back to top"></i></a>
-            </div>
-            <ul class="nav col-md-4 justify-content-end">
-              <li class="nav-item"><a href="#home" class="nav-link px-2 text-body-secondary">Home</a></li>
-              <li class="nav-item"><a href="#about" class="nav-link px-2 text-body-secondary">About Me</a></li>
-              <!--<li class="nav-item"><a href="#blog" class="nav-link px-2 text-body-secondary">Blog</a></li>
-              <li class="nav-item"><a href="#projects" class="nav-link px-2 text-body-secondary">Projects</a></li>-->
-              <li class="nav-item"><a href="#contacts" class="nav-link px-2 text-body-secondary">Contact</a></li>
-            </ul>
-          </footer>
-        </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="assets/js/switch.js"></script>
-      <script type="text/javascript" id="articles" src="api.js"></script>
-</body>
+    </body>
 </html>
