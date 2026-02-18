@@ -1,0 +1,32 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BUCKET_NAME: "your-bucket-name"
+  AWS_REGION: "us-east-1"
+
+permissions:
+  id-token: write   # Required for OIDC token
+  contents: read    # Required for actions/checkout
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+        with:
+          role-to-assume: arn:aws:iam::YOUR-ACCOUNT-ID:role/your-github-role
+          role-session-name: github-actions-session
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Upload to S3
+        run: |
+          aws s3 cp ./ s3://${{ env.BUCKET_NAME }}/ --recursive --exclude ".git/*" --exclude ".github/*"
