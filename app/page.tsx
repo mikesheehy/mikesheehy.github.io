@@ -82,14 +82,14 @@ export default async function Home() {
             <p className="text-sm uppercase tracking-[0.3em] text-black/60">
               Mike Sheehy
             </p>
-            <p className="text-lg font-semibold">Product Engineer</p>
+            <p className="text-lg font-semibold">Software Engineer</p>
           </div>
         </div>
       </header>
 
       <main className="relative z-10">
         <div className="mx-auto w-full max-w-6xl px-6 py-16 md:py-24">
-          <div className="grid gap-12 md:grid-cols-[220px_minmax(0,1fr)]">
+          <div className="grid gap-12 md:grid-cols-[220px_minmax(0,700px)]">
             <aside className="space-y-6 md:sticky md:top-10 md:self-start">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black/50">
@@ -184,28 +184,11 @@ export default async function Home() {
                   <h2 className="font-[var(--font-display)] text-3xl md:text-4xl">
                     About Me
                   </h2>
-                  <p className="text-sm uppercase tracking-[0.3em] text-black/40">
-                    Human side
-                  </p>
                 </div>
                 <div className="space-y-6">
-                  <p className="text-lg leading-8 text-black/70">
-                    I am a product engineer who loves closing the gap between teams
-                    and customers. My work blends design craft, systems thinking, and
-                    thoughtful execution. I believe the best products feel inevitable
-                    because the details are treated with care.
-                  </p>
-                  <div className="text-sm leading-6 text-black/70">
-                    <p className="mb-4 font-semibold uppercase tracking-[0.25em] text-black/50">
-                      Focus Areas
-                    </p>
-                    <ul className="space-y-3">
-                      <li>Product strategy and roadmap facilitation.</li>
-                      <li>Design systems that scale across teams.</li>
-                      <li>Engineering leadership and delivery rituals.</li>
-                      <li>Rapid prototyping with measurable outcomes.</li>
-                    </ul>
-                  </div>
+                  <p className="text-lg leading-8 text-black/70">I'm Mike, a dedicated full-stack developer specializing in Java with a keen interest in AWS and platform engineering. I first became interested in tech when I helped implement SEO strategies for my first job after college. A career change offered an opportunity to explore this field, complete a full stack developer bootcamp, and build some projects.</p>
+                  <p className="text-lg leading-8 text-black/70">As part of my professional growth, I have obtained the AWS Certified Cloud Practitioner certification and I'm currently learning towards the AWS Certified Developer Associate certification.</p>
+                  <p className="text-lg leading-8 text-black/70">When I'm not working or pursuing new technical skills, I spend my time running, listening to new music, cooking, cheering on my college and local sports teams, and traveling. In fact, some of this site was built while riding a high-speed train from Barcelona to Madrid! I also volunteer as a mentor for Code:You.</p>                    
                 </div>
               </section>
 
@@ -214,9 +197,6 @@ export default async function Home() {
                   <h2 className="font-[var(--font-display)] text-3xl md:text-4xl">
                     Work Experience
                   </h2>
-                  <p className="text-sm uppercase tracking-[0.3em] text-black/40">
-                    Selected work
-                  </p>
                 </div>
                 <div className="space-y-6">
                   {[
@@ -267,9 +247,6 @@ export default async function Home() {
                   <h2 className="font-[var(--font-display)] text-3xl md:text-4xl">
                     Blog
                   </h2>
-                  <p className="text-sm uppercase tracking-[0.3em] text-black/40">
-                    Hashnode
-                  </p>
                 </div>
 
                 <div className="space-y-6">
