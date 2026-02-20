@@ -174,7 +174,7 @@ export default async function Home() {
                   </div>
                   <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-wider text-black/60">
                     <span className="h-2 w-2 rounded-full bg-[#84b59f]"></span>
-                    Available for select collaborations
+                    {' '}Available for select collaborations
                   </div>
                 </div>
               </section>
@@ -201,25 +201,32 @@ export default async function Home() {
                 <div className="space-y-6">
                   {[
                     {
-                      role: "Lead Product Engineer",
-                      company: "Flux Systems",
-                      time: "2022 - Present",
+                      role: "Software Engineer Specialist",
+                      company: "Nationwide Financial",
+                      time: "2019 - Present",
                       detail:
-                        "Shipped a new onboarding workflow that reduced time-to-value by 38%.",
+                        ["Develop cost-effective information technology solutions by creating new and modifying existing software applications",
+                        "Analyze and validates complex system requirements and existing business processes. Design, develop and implement new programs and modifications of existing applications.",
+                        "Assist in leading all aspects of applications programming and development including file design, update, storage and retrieval."]
                     },
                     {
-                      role: "Senior Engineer",
-                      company: "Northwind Labs",
-                      time: "2019 - 2022",
-                      detail:
-                        "Designed a reusable UI kit across four product lines.",
-                    },
-                    {
-                      role: "Product Designer",
-                      company: "Studio K",
+                      role: "Marketing IT Associate Developer",
+                      company: "GE Appliances, a Haier Company",
                       time: "2016 - 2019",
                       detail:
-                        "Led cross-functional launches for B2B and consumer teams.",
+                        ["Provide analysis to develop solutions toward Minimum Viable Product (MVP) and continue to enable productivity (efficiency) across the business",
+                        "Build on working knowledge of Java, Maven, Spring, Jenkins, SAP Master Data Management, CodePipeline, Progressive Web Applications, AmpScript and more",
+                        "Collaborate across multiple teams using GitHub",
+                        "Work effectively with vendor/partners, resources and various IT teams such as Infrastructure, DBAs and Shared Services"],
+                    },
+                    {
+                      role: "Product Designer.Net Apprentice",
+                      company: "The Software Guild",
+                      time: "2016",
+                      detail:
+                        ["Implement full stack practices to applications in both individual and group environments",
+                        "Acquire knowledge in C#, SQL Server, ASP.NET, MVC, ADO.NET, HTML, Bootstrap, and JavaScript",
+                        "Program applications into UI, database, and logic programming layers to optimize Agile performance"],
                     },
                   ].map((item) => (
                     <div
@@ -228,15 +235,23 @@ export default async function Home() {
                       <p className="text-sm uppercase tracking-[0.25em] text-black/50">
                         {item.time}
                       </p>
-                      <h3 className="mt-3 text-xl font-semibold">
+                      <h3 className="text-xl font-semibold">
                         {item.role}
                       </h3>
                       <p className="text-sm font-medium uppercase tracking-[0.2em] text-black/40">
                         {item.company}
                       </p>
-                      <p className="mt-4 text-sm leading-6 text-black/70">
-                        {item.detail}
-                      </p>
+                      <div className="mt-4 text-sm leading-6 text-black/70">
+                        {Array.isArray(item.detail) ? (
+                          <ul className="list-disc pl-5">
+                            {item.detail.map((detail, index) => (
+                              <li key={index}>{detail}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <ul className="list-disc pl-5">{item.detail}</ul>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -259,7 +274,7 @@ export default async function Home() {
                         rel="noreferrer"
                         className="group flex h-full flex-col justify-between transition"
                       >
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                           <p className="text-xs uppercase tracking-[0.25em] text-black/50">
                             {new Date(post.publishedAt).toLocaleDateString("en-US", {
                               month: "short",
