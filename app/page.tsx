@@ -18,7 +18,7 @@ async function getLatestPosts(): Promise<HashnodePost[]> {
   try {
     const response = await fetch(HASHNODE_RSS, {
       next: { revalidate: 3600 },
-    });
+    } as RequestInit);
 
     if (!response.ok) return [];
 
