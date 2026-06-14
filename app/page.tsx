@@ -4,67 +4,34 @@ type HashnodePost = {
   brief: string;
   url: string;
   publishedAt: string;
-  coverImage?: {
-    url: string;
-  } | null;
 };
 
-const HASHNODE_ENDPOINT = "https://gql.hashnode.com";
+const HASHNODE_RSS = "https://mikesheehy.hashnode.dev/rss.xml";
+
+function extractTag(xml: string, tag: string): string {
+  const match = new RegExp(String.raw`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`).exec(xml);
+  if (!match) return "";
+  return match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/, "$1").trim();
+}
 
 async function getLatestPosts(): Promise<HashnodePost[]> {
-  const query = `
-    query PublicationPosts($host: String!, $first: Int!) {
-      publication(host: $host) {
-        posts(first: $first) {
-          edges {
-            node {
-              id
-              title
-              brief
-              url
-              publishedAt
-              coverImage {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
   try {
-    const response = await fetch(HASHNODE_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query,
-        variables: { host: "mikesheehy.hashnode.dev", first: 3 },
-      }),
+    const response = await fetch(HASHNODE_RSS, {
       next: { revalidate: 3600 },
     });
 
-    if (!response.ok) {
-      return [];
-    }
+    if (!response.ok) return [];
 
-    const payload = (await response.json()) as {
-      data?: {
-        publication?: {
-          posts?: {
-            edges?: { node?: HashnodePost }[];
-          };
-        };
-      };
-    };
+    const xml = await response.text();
+    const items = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
 
-    return (
-      payload.data?.publication?.posts?.edges
-        ?.map((edge) => edge.node)
-        .filter((post): post is HashnodePost => Boolean(post)) ?? []
-    );
+    return items.slice(0, 3).map((item) => ({
+      id: extractTag(item, "guid"),
+      title: extractTag(item, "title"),
+      brief: extractTag(item, "description"),
+      url: extractTag(item, "link"),
+      publishedAt: new Date(extractTag(item, "pubDate")).toISOString(),
+    }));
   } catch {
     return [];
   }
