@@ -1,3 +1,5 @@
+import { unstable_cache } from "next/cache";
+
 type HashnodePost = {
   id: string;
   title: string;
@@ -14,28 +16,36 @@ function extractTag(xml: string, tag: string): string {
   return match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/, "$1").trim();
 }
 
-async function getLatestPosts(): Promise<HashnodePost[]> {
-  try {
-    const response = await fetch(HASHNODE_RSS, {
-      next: { revalidate: 3600 },
-    } as RequestInit);
+const getLatestPosts = unstable_cache(
+  async (): Promise<HashnodePost[]> => {
+    try {
+      const response = await fetch(HASHNODE_RSS, {
+        headers: { "User-Agent": "mikesheehy.github.io RSS reader" },
+      });
 
-    if (!response.ok) return [];
+      if (!response.ok) {
+        console.error(`[getLatestPosts] RSS feed returned ${response.status}`);
+        return [];
+      }
 
-    const xml = await response.text();
-    const items = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
+      const xml = await response.text();
+      const items = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
 
-    return items.slice(0, 3).map((item) => ({
-      id: extractTag(item, "guid"),
-      title: extractTag(item, "title"),
-      brief: extractTag(item, "description"),
-      url: extractTag(item, "link"),
-      publishedAt: new Date(extractTag(item, "pubDate")).toISOString(),
-    }));
-  } catch {
-    return [];
-  }
-}
+      return items.slice(0, 3).map((item) => ({
+        id: extractTag(item, "guid"),
+        title: extractTag(item, "title"),
+        brief: extractTag(item, "description"),
+        url: extractTag(item, "link"),
+        publishedAt: new Date(extractTag(item, "pubDate")).toISOString(),
+      }));
+    } catch (err) {
+      console.error("[getLatestPosts] Failed to fetch RSS feed:", err);
+      return [];
+    }
+  },
+  ["hashnode-rss"],
+  { revalidate: 3600 }
+);
 
 export default async function Home() {
   const posts = await getLatestPosts();
