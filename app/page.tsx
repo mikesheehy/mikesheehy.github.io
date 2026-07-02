@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 
-type HashnodePost = {
+type BlogPost = {
   id: string;
   title: string;
   brief: string;
@@ -8,42 +8,40 @@ type HashnodePost = {
   publishedAt: string;
 };
 
-const HASHNODE_RSS = "https://mikesheehy.hashnode.dev/rss.xml";
+const WORDPRESS_API =
+  "https://public-api.wordpress.com/rest/v1.1/sites/mikesheehyblog.wordpress.com/posts?number=3&fields=ID,title,excerpt,URL,date";
 
-function extractTag(xml: string, tag: string): string {
-  const match = new RegExp(String.raw`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`).exec(xml);
-  if (!match) return "";
-  return match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/, "$1").trim();
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, "").trim();
 }
 
 const getLatestPosts = unstable_cache(
-  async (): Promise<HashnodePost[]> => {
+  async (): Promise<BlogPost[]> => {
     try {
-      const response = await fetch(HASHNODE_RSS, {
-        headers: { "User-Agent": "mikesheehy.github.io RSS reader" },
-      });
+      const response = await fetch(WORDPRESS_API, { next: { revalidate: 3600 } });
 
       if (!response.ok) {
-        console.error(`[getLatestPosts] RSS feed returned ${response.status}`);
+        console.error(`[getLatestPosts] WordPress API returned ${response.status}`);
         return [];
       }
 
-      const xml = await response.text();
-      const items = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
+      const data = await response.json() as {
+        posts: { ID: number; title: string; excerpt: string; URL: string; date: string }[];
+      };
 
-      return items.slice(0, 3).map((item) => ({
-        id: extractTag(item, "guid"),
-        title: extractTag(item, "title"),
-        brief: extractTag(item, "description"),
-        url: extractTag(item, "link"),
-        publishedAt: new Date(extractTag(item, "pubDate")).toISOString(),
+      return (data.posts ?? []).map((post) => ({
+        id: String(post.ID),
+        title: stripHtml(post.title),
+        brief: stripHtml(post.excerpt),
+        url: post.URL,
+        publishedAt: new Date(post.date).toISOString(),
       }));
     } catch (err) {
-      console.error("[getLatestPosts] Failed to fetch RSS feed:", err);
+      console.error("[getLatestPosts] Failed to fetch WordPress posts:", err);
       return [];
     }
   },
-  ["hashnode-rss"],
+  ["wordpress-api"],
   { revalidate: 3600 }
 );
 
@@ -268,11 +266,11 @@ export default async function Home() {
                       </p>
                       <a
                         className="mt-6 inline-flex rounded-full border border-black/60 px-5 py-2 text-xs font-semibold uppercase tracking-wider transition hover:bg-black hover:text-[#f6f2ea]"
-                        href="https://mikesheehy.hashnode.dev"
+                        href="https://mikesheehyblog.wordpress.com"
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Visit Hashnode
+                        Visit Blog
                       </a>
                     </div>
                   )}
@@ -310,14 +308,14 @@ export default async function Home() {
               </svg>
             </a>
             <a
-              href="https://mikesheehy.hashnode.dev"
+              href="https://mikesheehyblog.wordpress.com"
               target="_blank"
               rel="noreferrer"
               className="transition hover:text-black"
-              aria-label="Hashnode"
+              aria-label="WordPress"
             >
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22.351 8.019l-6.37-6.37a5.63 5.63 0 0 0-7.962 0l-6.37 6.37a5.63 5.63 0 0 0 0 7.962l6.37 6.37a5.63 5.63 0 0 0 7.962 0l6.37-6.37a5.63 5.63 0 0 0 0-7.962zM12 15.953a3.953 3.953 0 1 1 0-7.906 3.953 3.953 0 0 1 0 7.906z" />
+                <path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.58-.075.514-.93-.067-.899 0 0-1.743.136-2.87.136-1.057 0-2.84-.15-2.84-.15-.582-.03-.647.84-.067.885 0 0 .54.060 1.125.09l1.68 4.605-2.37 7.08-3.918-11.685c.648-.03 1.234-.105 1.234-.105.58-.075.513-.93-.067-.9 0 0-1.743.136-2.87.136-.2 0-.44-.006-.69-.018C3.736 8.294 7.606 5.25 12.2 5.25c3.312 0 6.32 1.266 8.584 3.34-.054-.004-.107-.01-.16-.01-1.057 0-1.807.92-1.807 1.905 0 .885.51 1.635 1.05 2.52.406.713.882 1.635.882 2.96 0 .915-.35 1.98-.807 3.465l-1.057 3.525-3.84-11.43zM12 21.9c-.96 0-1.883-.136-2.76-.39l2.928-8.505 3 8.19c.018.045.042.087.063.13-.712.24-1.47.375-2.231.375zM2.25 12c0-1.635.36-3.187 1.005-4.575L7.8 19.335C4.612 17.64 2.25 14.07 2.25 12zM12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0z" />
               </svg>
             </a>
             <a
