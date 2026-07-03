@@ -8,12 +8,66 @@ type BlogPost = {
   publishedAt: string;
 };
 
+type CredlyBadge = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  issuer: string;
+  description: string;
+  issuedAt: string;
+  url: string;
+};
+
 const WORDPRESS_API =
   "https://public-api.wordpress.com/rest/v1.1/sites/mikesheehyblog.wordpress.com/posts?number=3&fields=ID,title,excerpt,URL,date";
+
+const CREDLY_API = "https://www.credly.com/users/mikesheehy/badges.json";
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").trim();
 }
+
+const getCredlyBadges = unstable_cache(
+  async (): Promise<CredlyBadge[]> => {
+    try {
+      const response = await fetch(CREDLY_API, { next: { revalidate: 86400 } });
+
+      if (!response.ok) {
+        console.error(`[getCredlyBadges] Credly API returned ${response.status}`);
+        return [];
+      }
+
+      const data = await response.json() as {
+        data: {
+          id: string;
+          url: string;
+          issued_at_date: string;
+          badge_template: {
+            name: string;
+            image_url: string;
+            description: string;
+            issuer: { entities: { entity: { name: string } }[] };
+          };
+        }[];
+      };
+
+      return (data.data ?? []).map((badge) => ({
+        id: badge.id,
+        name: badge.badge_template.name,
+        imageUrl: badge.badge_template.image_url,
+        issuer: badge.badge_template.issuer?.entities?.[0]?.entity?.name ?? "",
+        description: badge.badge_template.description,
+        issuedAt: badge.issued_at_date,
+        url: badge.url,
+      }));
+    } catch (err) {
+      console.error("[getCredlyBadges] Failed to fetch Credly badges:", err);
+      return [];
+    }
+  },
+  ["credly-badges"],
+  { revalidate: 86400 }
+);
 
 const getLatestPosts = unstable_cache(
   async (): Promise<BlogPost[]> => {
@@ -46,7 +100,7 @@ const getLatestPosts = unstable_cache(
 );
 
 export default async function Home() {
-  const posts = await getLatestPosts();
+  const [posts, badges] = await Promise.all([getLatestPosts(), getCredlyBadges()]);
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -76,6 +130,9 @@ export default async function Home() {
                   </a>
                   <a className="transition hover:text-black" href="#work">
                     Work
+                  </a>
+                  <a className="transition hover:text-black" href="#certifications">
+                    Certifications
                   </a>
                   <a className="transition hover:text-black" href="#blog">
                     Blog
@@ -218,6 +275,71 @@ export default async function Home() {
                 </div>
               </section>
 
+              <section id="certifications" className="space-y-8">
+                <div className="flex items-end justify-between gap-6">
+                  <h2 className="font-[var(--font-display)] text-3xl md:text-4xl">
+                    Certifications
+                  </h2>
+                  <a
+                    href="https://www.credly.com/users/mikesheehy"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm font-semibold uppercase tracking-wider text-black/50 transition hover:text-black"
+                  >
+                    View all
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+                  {badges.length > 0 ? (
+                    badges.map((badge) => (
+                      <a
+                        key={badge.id}
+                        href={badge.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex flex-col items-center gap-3 rounded-2xl border border-black/10 p-5 text-center transition hover:border-black/30 hover:shadow-sm"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={badge.imageUrl}
+                          alt={badge.name}
+                          className="h-24 w-24 object-contain"
+                        />
+                        <div className="space-y-1">
+                          <p className="text-sm font-semibold leading-tight">
+                            {badge.name}
+                          </p>
+                          <p className="text-xs uppercase tracking-[0.2em] text-black/50">
+                            {badge.issuer}
+                          </p>
+                          <p className="text-xs text-black/40">
+                            {new Date(badge.issuedAt).toLocaleDateString("en-US", {
+                              month: "short",
+                              year: "numeric",
+                            })}
+                          </p>
+                        </div>
+                      </a>
+                    ))
+                  ) : (
+                    <div className="col-span-full">
+                      <p className="text-sm uppercase tracking-[0.25em] text-black/50">
+                        Unable to load certifications
+                      </p>
+                      <a
+                        className="mt-4 inline-flex rounded-full border border-black/60 px-5 py-2 text-xs font-semibold uppercase tracking-wider transition hover:bg-black hover:text-[#f6f2ea]"
+                        href="https://www.credly.com/users/mikesheehy"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        View on Credly
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </section>
+
               <section id="blog" className="space-y-8">
                 <div className="flex items-end justify-between gap-6">
                   <h2 className="font-[var(--font-display)] text-3xl md:text-4xl">
@@ -314,8 +436,8 @@ export default async function Home() {
               className="transition hover:text-black"
               aria-label="WordPress"
             >
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.58-.075.514-.93-.067-.899 0 0-1.743.136-2.87.136-1.057 0-2.84-.15-2.84-.15-.582-.03-.647.84-.067.885 0 0 .54.060 1.125.09l1.68 4.605-2.37 7.08-3.918-11.685c.648-.03 1.234-.105 1.234-.105.58-.075.513-.93-.067-.9 0 0-1.743.136-2.87.136-.2 0-.44-.006-.69-.018C3.736 8.294 7.606 5.25 12.2 5.25c3.312 0 6.32 1.266 8.584 3.34-.054-.004-.107-.01-.16-.01-1.057 0-1.807.92-1.807 1.905 0 .885.51 1.635 1.05 2.52.406.713.882 1.635.882 2.96 0 .915-.35 1.98-.807 3.465l-1.057 3.525-3.84-11.43zM12 21.9c-.96 0-1.883-.136-2.76-.39l2.928-8.505 3 8.19c.018.045.042.087.063.13-.712.24-1.47.375-2.231.375zM2.25 12c0-1.635.36-3.187 1.005-4.575L7.8 19.335C4.612 17.64 2.25 14.07 2.25 12zM12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0z" />
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 512 512">
+                <path d="M256 8C119.3 8 8 119.2 8 256c0 136.7 111.3 248 248 248s248-111.3 248-248C504 119.2 392.7 8 256 8zM33 256c0-32.3 6.9-63 19.3-90.7l106.4 291.4C84.3 420.5 33 344.2 33 256zm223 223c-21.9 0-43-3.2-63-9.1l66.9-194.4 68.5 187.8c.5 1.1 1 2.1 1.6 3.1-23.1 8.1-48 12.6-74 12.6zm30.7-327.5c13.4-.7 25.5-2.1 25.5-2.1 12-1.4 10.6-19.1-1.4-18.4 0 0-36.1 2.8-59.4 2.8-21.9 0-58.7-2.8-58.7-2.8-12-.7-13.4 17.7-1.4 18.4 0 0 11.4 1.4 23.4 2.1l34.7 95.2L200.6 393l-81.2-241.5c13.4-.7 25.5-2.1 25.5-2.1 12-1.4 10.6-19.1-1.4-18.4 0 0-36.1 2.8-59.4 2.8-4.2 0-9.1-.1-14.4-.3C109.6 73 178.1 33 256 33c58 0 110.9 22.2 150.6 58.5-1-.1-1.9-.2-2.9-.2-21.9 0-37.4 19.1-37.4 39.6 0 18.4 10.6 33.9 21.9 52.3 8.5 14.8 18.4 33.9 18.4 61.5 0 19.1-7.3 41.2-17 72.1l-22.2 74.3-80.7-239.6zm81.4 297.2l68.1-196.9c12.7-31.8 17-57.2 17-79.9 0-8.2-.5-15.8-1.5-22.9 17.4 31.8 27.3 68.2 27.3 107 0 82.3-44.6 154.1-110.9 192.7z" />
               </svg>
             </a>
             <a
