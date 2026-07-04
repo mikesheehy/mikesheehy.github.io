@@ -81,7 +81,7 @@ async function getLatestPosts(): Promise<BlogPost[]> {
     return (data.posts ?? []).map((post) => ({
       id: String(post.ID),
       title: stripHtml(post.title),
-      brief: stripHtml(post.excerpt),
+      brief: stripHtml(post.excerpt).replace(/\s*\[&hellip;\]$/, "…"),
       url: post.URL,
       publishedAt: new Date(post.date).toISOString(),
     }));
@@ -245,10 +245,10 @@ export default async function Home() {
                       <p className="text-sm uppercase tracking-[0.25em] text-black/50">
                         {item.time}
                       </p>
-                      <h3 className="text-xl font-semibold">
+                      <h3 className="mt-2 text-xl font-semibold">
                         {item.role}
                       </h3>
-                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-black/40">
+                      <p className="mt-1 text-sm font-medium uppercase tracking-[0.2em] text-black/40">
                         {item.company}
                       </p>
                       <div className="mt-4 text-sm leading-6 text-black/70">
@@ -342,11 +342,8 @@ export default async function Home() {
                 <div className="space-y-6">
                   {posts.length > 0 ? (
                     posts.map((post) => (
-                      <a
+                      <article
                         key={post.id}
-                        href={post.url}
-                        target="_blank"
-                        rel="noreferrer"
                         className="group flex h-full flex-col justify-between transition"
                       >
                         <div className="space-y-2">
@@ -364,10 +361,16 @@ export default async function Home() {
                             {post.brief}
                           </p>
                         </div>
-                        <span className="mt-6 text-sm font-semibold uppercase tracking-wider text-black/60">
-                          Read article
-                        </span>
-                      </a>
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <span className="mt-3 text-sm font-semibold uppercase tracking-wider text-black/60">
+                            Read article
+                          </span>
+                        </a>
+                      </article>
                     ))
                   ) : (
                     <div>
