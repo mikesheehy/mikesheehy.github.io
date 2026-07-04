@@ -1,5 +1,3 @@
-import { unstable_cache } from "next/cache";
-
 type BlogPost = {
   id: string;
   title: string;
@@ -27,77 +25,71 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").trim();
 }
 
-const getCredlyBadges = unstable_cache(
-  async (): Promise<CredlyBadge[]> => {
-    try {
-      const response = await fetch(CREDLY_API, { next: { revalidate: 86400 } });
+// Fetched at build time and baked into the static HTML. The GitHub Pages
+// workflow rebuilds on every push and on a weekly schedule, refreshing this data.
+async function getCredlyBadges(): Promise<CredlyBadge[]> {
+  try {
+    const response = await fetch(CREDLY_API);
 
-      if (!response.ok) {
-        console.error(`[getCredlyBadges] Credly API returned ${response.status}`);
-        return [];
-      }
-
-      const data = await response.json() as {
-        data: {
-          id: string;
-          url: string;
-          issued_at_date: string;
-          badge_template: {
-            name: string;
-            image_url: string;
-            description: string;
-            issuer: { entities: { entity: { name: string } }[] };
-          };
-        }[];
-      };
-
-      return (data.data ?? []).map((badge) => ({
-        id: badge.id,
-        name: badge.badge_template.name,
-        imageUrl: badge.badge_template.image_url,
-        issuer: badge.badge_template.issuer?.entities?.[0]?.entity?.name ?? "",
-        description: badge.badge_template.description,
-        issuedAt: badge.issued_at_date,
-        url: badge.url,
-      }));
-    } catch (err) {
-      console.error("[getCredlyBadges] Failed to fetch Credly badges:", err);
+    if (!response.ok) {
+      console.error(`[getCredlyBadges] Credly API returned ${response.status}`);
       return [];
     }
-  },
-  ["credly-badges"],
-  { revalidate: 86400 }
-);
 
-const getLatestPosts = unstable_cache(
-  async (): Promise<BlogPost[]> => {
-    try {
-      const response = await fetch(WORDPRESS_API, { next: { revalidate: 3600 } });
+    const data = await response.json() as {
+      data: {
+        id: string;
+        url: string;
+        issued_at_date: string;
+        badge_template: {
+          name: string;
+          image_url: string;
+          description: string;
+          issuer: { entities: { entity: { name: string } }[] };
+        };
+      }[];
+    };
 
-      if (!response.ok) {
-        console.error(`[getLatestPosts] WordPress API returned ${response.status}`);
-        return [];
-      }
+    return (data.data ?? []).map((badge) => ({
+      id: badge.id,
+      name: badge.badge_template.name,
+      imageUrl: badge.badge_template.image_url,
+      issuer: badge.badge_template.issuer?.entities?.[0]?.entity?.name ?? "",
+      description: badge.badge_template.description,
+      issuedAt: badge.issued_at_date,
+      url: badge.url,
+    }));
+  } catch (err) {
+    console.error("[getCredlyBadges] Failed to fetch Credly badges:", err);
+    return [];
+  }
+}
 
-      const data = await response.json() as {
-        posts: { ID: number; title: string; excerpt: string; URL: string; date: string }[];
-      };
+async function getLatestPosts(): Promise<BlogPost[]> {
+  try {
+    const response = await fetch(WORDPRESS_API);
 
-      return (data.posts ?? []).map((post) => ({
-        id: String(post.ID),
-        title: stripHtml(post.title),
-        brief: stripHtml(post.excerpt),
-        url: post.URL,
-        publishedAt: new Date(post.date).toISOString(),
-      }));
-    } catch (err) {
-      console.error("[getLatestPosts] Failed to fetch WordPress posts:", err);
+    if (!response.ok) {
+      console.error(`[getLatestPosts] WordPress API returned ${response.status}`);
       return [];
     }
-  },
-  ["wordpress-api"],
-  { revalidate: 3600 }
-);
+
+    const data = await response.json() as {
+      posts: { ID: number; title: string; excerpt: string; URL: string; date: string }[];
+    };
+
+    return (data.posts ?? []).map((post) => ({
+      id: String(post.ID),
+      title: stripHtml(post.title),
+      brief: stripHtml(post.excerpt),
+      url: post.URL,
+      publishedAt: new Date(post.date).toISOString(),
+    }));
+  } catch (err) {
+    console.error("[getLatestPosts] Failed to fetch WordPress posts:", err);
+    return [];
+  }
+}
 
 export default async function Home() {
   const [posts, badges] = await Promise.all([getLatestPosts(), getCredlyBadges()]);
