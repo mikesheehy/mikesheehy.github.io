@@ -103,7 +103,7 @@ export default async function Home() {
             <p className="text-sm uppercase tracking-[0.3em] text-black/60">
               Mike Sheehy
             </p>
-            <p className="text-lg font-semibold">Forward Deployed Engineer</p>
+            <p className="text-lg font-semibold">DevSecOps Engineer</p>
           </div>
         </div>
       </header>
@@ -136,17 +136,13 @@ export default async function Home() {
             <div className="space-y-16">
               <section className="space-y-10">
                 <div className="space-y-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.35em] text-black/50">
-                    Personal Site
-                  </p>
                   <h1 className="font-[var(--font-display)] text-4xl leading-tight md:text-6xl">
-                    Building calm, confident product experiences from idea to launch.
+                    Building software that turns complex ideas into clear, useful experiences.
                   </h1>
                   <p className="max-w-xl text-lg leading-8 text-black/70">
-                    I engineer efforts that connect design, strategy,
-                    and shipping. This space is where I share the highlights of the
-                    work, the process behind it, and the writing that keeps me
-                    learning.
+                    I design and ship thoughtful products through AI-Driven Development Lifecycles to 
+                    accelerate problem-solving and product delivery. This is where I share the work, 
+                    the thinking behind it, and the lessons that come from building.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
@@ -161,30 +157,6 @@ export default async function Home() {
                     >
                       Say Hello
                     </a>
-                  </div>
-                </div>
-                <div className="space-y-6">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.25em] text-black/50">
-                      Currently
-                    </p>
-                    <p className="text-2xl font-semibold">
-                      Partnering with teams to ship faster with clarity.
-                    </p>
-                  </div>
-                  <div className="space-y-4 text-sm text-black/70">
-                    <p>
-                      Based in the US, working across product strategy, system
-                      design, and engineering leadership.
-                    </p>
-                    <p>
-                      Recent focus: design systems, developer experience, and
-                      founder-friendly go-to-market launches.
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-wider text-black/60">
-                    <span className="h-2 w-2 rounded-full bg-[#84b59f]"></span>
-                    {' '}Available for select collaborations
                   </div>
                 </div>
               </section>

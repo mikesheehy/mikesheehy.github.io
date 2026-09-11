@@ -13,9 +13,9 @@ const bodyFont = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Mike Sheehy | Forward Deployed Engineer",
+  title: "Mike Sheehy | DevSecOps Engineer",
   description:
-    "Forward Deployed Engineer specializing in AI integration, cloud technologies, and full-stack development. Expertise in AIDLC, AWS, and accelerating team productivity.",
+    "DevSecOps Engineer specializing in AI integration, cloud technologies, and full-stack development. Expertise in AIDLC, AWS, and accelerating team productivity.",
 };
 
 export default function RootLayout({
