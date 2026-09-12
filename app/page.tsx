@@ -116,7 +116,7 @@ const WORK_HISTORY = [
     ],
   },
   {
-    role: "Product Designer.Net Apprentice",
+    role: ".Net Apprentice",
     company: "The Software Guild",
     time: "2016",
     detail: [
@@ -169,9 +169,9 @@ export default async function Home() {
           <section id="about">
             <h2>About Me</h2>
             <div className="prose">
-              <p>I&apos;m Mike, a dedicated full-stack developer specializing in Java with a keen interest in AWS and platform engineering. I first became interested in tech when I helped implement SEO strategies for my first job after college. A career change offered an opportunity to explore this field, complete a full stack developer bootcamp, and build some projects.</p>
-              <p>As part of my professional growth, I have obtained the AWS Certified Cloud Practitioner certification and I&apos;m currently learning towards the AWS Certified Developer Associate certification.</p>
-              <p>When I&apos;m not working or pursuing new technical skills, I spend my time running, listening to new music, cooking, cheering on my college and local sports teams, and traveling. In fact, some of this site was built while riding a high-speed train from Barcelona to Madrid! I also volunteer as a mentor for Code:You.</p>
+              <p>I&apos;m Mike, a dedicated software engineer specializing in Java applications while also exploring AI and cloud technologies. I first became interested in tech when I implemented SEO strategies for my first job after college. A career change offered an opportunity to explore this field, complete a full stack developer bootcamp, and build some projects.</p>
+              <p>As part of my professional growth, I have obtained the AWS Certified Cloud Practitioner certification and Cybersecurity Certificate from Columbus State. I&apos;m currently learning towards the AWS Certified AI Practicioner and Developer Associate certifications.</p>
+              <p>When I&apos;m not working or pursuing new technical skills, I spend my time running, listening to new music, cooking, cheering on my favorite sports teams, and traveling. In fact, some of this site was built while riding a high-speed train from Barcelona to Madrid!</p>
             </div>
           </section>
 
