@@ -19,12 +19,42 @@ type CredlyBadge = {
 };
 
 const WORDPRESS_API =
-  "https://public-api.wordpress.com/rest/v1.1/sites/mikesheehyblog.wordpress.com/posts?number=3&fields=ID,title,excerpt,URL,date";
+  "https://public-api.wordpress.com/rest/v1.1/sites/mikesheehyblog.wordpress.com/posts?number=5&fields=ID,title,excerpt,URL,date";
 
 const CREDLY_API = "https://www.credly.com/users/mikesheehy/badges.json";
 
+const NAMED_ENTITIES: Record<string, string> = {
+  amp: "&",
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  nbsp: " ",
+  hellip: "…",
+  mdash: "—",
+  ndash: "–",
+  lsquo: "‘",
+  rsquo: "’",
+  ldquo: "“",
+  rdquo: "”",
+};
+
+// WordPress returns titles/excerpts with HTML entities (e.g. &#8217;), which
+// React would otherwise render literally since it escapes text content.
+function decodeEntities(text: string): string {
+  return text.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (match, entity: string) => {
+    if (entity.startsWith("#")) {
+      const code = entity[1].toLowerCase() === "x"
+        ? Number.parseInt(entity.slice(2), 16)
+        : Number.parseInt(entity.slice(1), 10);
+      return Number.isNaN(code) ? match : String.fromCodePoint(code);
+    }
+    return NAMED_ENTITIES[entity.toLowerCase()] ?? match;
+  });
+}
+
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, "").trim();
+  return decodeEntities(html.replace(/<[^>]*>/g, "")).trim();
 }
 
 // Fetched at build time and baked into the static HTML. The GitHub Pages
@@ -83,7 +113,7 @@ async function getLatestPosts(): Promise<BlogPost[]> {
     return (data.posts ?? []).map((post) => ({
       id: String(post.ID),
       title: stripHtml(post.title),
-      brief: stripHtml(post.excerpt).replace(/\s*\[&hellip;\]$/, "…"),
+      brief: stripHtml(post.excerpt).replace(/ ?\[…\]$/, "…"),
       url: post.URL,
       publishedAt: new Date(post.date).toISOString(),
     }));
@@ -136,7 +166,7 @@ export default async function Home() {
         <div className="wrap">
           <a href="#top" className="brand">
             <span className="brand-name">Mike Sheehy</span>
-            <span className="brand-role">DevSecOps Engineer</span>
+            <span className="brand-role">Software Engineer</span>
           </a>
           <nav className="site-nav">
             <a href="#about">About</a>
@@ -161,7 +191,9 @@ export default async function Home() {
               </p>
               <div className="hero-actions">
                 <a className="btn btn-primary" href="#blog">Latest Writing</a>
-                <a className="btn btn-secondary" href="mailto:hello@mikesheehy.dev">Say Hello</a>
+                <a className="btn btn-secondary" href="https://www.linkedin.com/in/mikesheehy/" target="_blank" rel="noopener noreferrer">
+                  Connect on LinkedIn
+                </a>
               </div>
             </div>
           </section>
