@@ -11,7 +11,7 @@ on:
 
   # Runs every Monday at 8:00 AM UTC
   schedule:
-    - cron: '0 8 * * 1'
+    - cron: '01 8 * * 1'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
